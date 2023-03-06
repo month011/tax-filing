@@ -1,0 +1,138 @@
+<form *ngIf="formGroup" [formGroup]="formGroup">
+  <div class="row" style="margin-top: 2rem;">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6" style="margin: auto;">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h2 class="control-label">Tax Filing Detail</h2>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <h6 class="control-label col-sm-2">
+                      Type of filing
+                    </h6>
+                    <label class="control-label col-sm-10">
+                      {{formGroup.get('filingType')?.value === '0' ? 'Ordinary Filing': 'Additional Filing'}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <h6 class="control-label col-sm-2">
+                      VAT Month
+                    </h6>
+                    <label class="control-label col-sm-10">
+                      {{covertMonth() + " " + formGroup.get('year')?.value}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row mt-3">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h2 class="control-label col-">Tax Computation</h2>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <h6 class="col-sm-6">Total value of taxable electronic service exclusive of VAT</h6>
+
+                    <label class="control-label pt-0 col-sm-3 text-right">
+                      {{formGroup.get('saleAmount')?.value | number : '1.2-2' }} THB
+                    </label>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <h6 class="col-sm-6">Total VAT to be remitted</h6>
+                    <label class="control-label pt-0 col-sm-3 text-right">
+                      {{formGroup.get('taxAmount')?.value | number : '1.2-2' }} THB
+                    </label>
+                    <label class="control-label col-sm-12">
+                      (7% of Total value of taxable electronic service exclusive of VAT)
+                    </label>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <h6 class="col-sm-6">Total Amount Payable</h6>
+                    <label class="control-label pt-0 col-sm-3 text-right">
+                      {{formGroup.get('totalAmount')?.value | number : '1.2-2' }} THB
+                    </label>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-12 wrapper">
+          <button type="button" id="backBtn" (click)="back()"
+          class="btn btn-custom btn-light col-sm-2 text-center mx-1 mb-3">
+          Back
+        </button>
+          <button type="button" id="confirmBtn" (click)="submit()"
+            class="btn btn-custom btn-dark col-sm-3 text-center mx-1 mb-3">
+            Confirm and Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

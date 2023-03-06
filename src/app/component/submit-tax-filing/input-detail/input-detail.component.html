@@ -1,0 +1,244 @@
+<form *ngIf="formGroup" [formGroup]="formGroup">
+  <div class="row" style="margin-top: 2rem;">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6" style="margin: auto;">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h2 class="control-label">1. Tax Filing Detail</h2>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-6">
+                    Type of filing <span class="red">*</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
+                      <input type="radio" (change)="clearResultValidation()" formControlName="filingType"
+                        name="filingType" style="border-right: 1rem;" id="filing_type" value="0"> Ordinary Filing
+                      <img src='./assets/icon/information.png' class="pointer"
+                        style="width: 17px; filter: opacity(0.6) drop-shadow(0 0 0 black);"
+                        containerClass="tooltip-custom" data-toggle="tooltip" data-placement="img"
+                        title="Ordinary Filing">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
+                      <input type="radio" (change)="clearResultValidation()" formControlName="filingType"
+                        name="filingType" id="filing_type" value="1"> Additional Filing
+                      <img src='./assets/icon/information.png' class="pointer"
+                        style="width: 17px; filter: opacity(0.6) drop-shadow(0 0 0 black);"
+                        containerClass="tooltip-custom" data-toggle="tooltip" data-placement="img"
+                        title="Additional Filing">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="control-label col-sm-6">
+                    VAT Month <span class="red">*</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
+                      <select formControlName="month" (change)="onChangeMonth()" class="form-select"
+                        id="datePicker_month">
+                        <option value="" disabled>Please Select Month</option>
+                        <option *ngFor="let month of monthList" [value]="month.itemValue">{{ month.itemLabel }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3 mt1">
+                      <select formControlName="year" (change)="onChangeYear()" class="form-select" id="datePicker_year">
+                        <option value="" disabled>Please Select Year</option>
+                        <option *ngFor="let year of yearList" [value]="year">{{ year }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h2 class="control-label col-">2. Tax Computation</h2>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h6 class="control-label">Provide total value taxable electronic service <span class="red">*</span>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-sm-8">
+                      1. Total value of taxable electronic service exclusive of VAT
+                    </label>
+                    <div class="col-sm-4">
+                      <input currencyMask [options]="{prefix:'', allowNegative: false, suffix:' THB'}" type="text"
+                        class="form-control left" [placeholder]="'THB'" maxlength="50" formControlName="saleAmount"
+                        appValidation="saleAmount" (blur)="saleAmountChange()" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-sm-8">
+                      2. Total VAT to be remitted (7% of 1.)
+                    </label>
+                    <div class="col-sm-4">
+                      <input currencyMask [options]="{prefix:'', allowNegative: false, suffix:' THB'}" type="text"
+                        class="form-control left" [placeholder]="'THB'" maxlength="50" formControlName="taxAmount"
+                        appValidation="taxAmount" (blur)="taxAmountChange()" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <h6 class="control-label">In case of late filling and payment, or additional filling</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-sm-8">
+                      3. Surcharge
+                      <img src='./assets/icon/information.png' class="pointer"
+                        style="width: 17px; filter: opacity(0.6) drop-shadow(0 0 0 black);"
+                        containerClass="tooltip-custom" data-toggle="tooltip" data-placement="img" title="Surcharge">
+                    </label>
+                    <div class="col-sm-4">
+                      <input currencyMask [options]="{prefix:'', allowNegative: false, suffix:' THB'}" type="text"
+                        class="form-control left" [placeholder]="'THB'" maxlength="50" formControlName="surcharge"
+                        appValidation="surcharge" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-sm-8">
+                      4. Penalty
+                      <img src='./assets/icon/information.png' class="pointer"
+                        style="width: 17px; filter: opacity(0.6) drop-shadow(0 0 0 black);"
+                        containerClass="tooltip-custom" data-toggle="tooltip" data-placement="img" title="Penalty">
+                    </label>
+                    <div class="col-sm-4">
+                      <input currencyMask [options]="{prefix:'', allowNegative: false, suffix:' THB'}" type="text"
+                        class="form-control left" [placeholder]="'THB'" maxlength="50" formControlName="penalty"
+                        appValidation="penalty" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="row">
+                    <label class="control-label col-sm-8">
+                      5. Total amount of VAT, surcharge and penalty to be remitted <br> (2.+3.+4.)
+                    </label>
+                    <div class="col-sm-4">
+                      <input currencyMask [options]="{prefix:'', allowNegative: false, suffix:' THB'}" type="text"
+                        class="form-control left" [placeholder]="'THB'" maxlength="50" formControlName="totalAmount"
+                        appValidation="totalAmount" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- <button type="button" id="extendPayment_nextBtn" (click)="back()"
+            class="btn btn-custom btn-light col-sm-2 text-center mx-1 mb-3">
+            Back
+          </button> -->
+          <button type="button" id="extendPayment_nextBtn" (click)="next()"
+            class="btn btn-custom btn-dark col-sm-2 text-center mx-1 mb-3">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

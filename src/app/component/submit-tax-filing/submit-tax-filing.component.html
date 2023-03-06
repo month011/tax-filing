@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <h2 class='text-center' id="page_title">Submit Tax Filing</h2>
+  <br />
+  <ul class="list-unstyled multi-steps">
+    <li [ngClass]="{'is-active': currentStep == stepBar.INPUT}" (click)="changeStep(stepBar.INPUT)" id="taxc_ext_officer_step1_btn">Input Detail</li>
+    <li [ngClass]="{'is-active': currentStep == stepBar.REVIEW}" (click)="changeStep(stepBar.REVIEW)" id="taxc_ext_officer_step2_btn">Confirm & Review</li>
+  </ul>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <app-input-detail *ngIf="currentStep == stepBar.INPUT" [currentStep]="currentStep" (stepToGo)="changeStep($event)" [formGroup]="step1Form"></app-input-detail>
+        <app-confirm-review *ngIf="currentStep == stepBar.REVIEW" [currentStep]="currentStep" (stepToGo)="changeStep($event)" [formGroup]="step1Form"></app-confirm-review>
+    </div>
+  </div>
+</div>

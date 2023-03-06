@@ -1,0 +1,25 @@
+<div class="panel panel-default" style="margin-bottom: 0;">
+  <div class="panel-heading">
+    <h4 class="panel-title header">Request Confirm</h4>
+  </div>
+  <div class="panel-body">
+    <form *ngIf="formGroup" [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group row col-sm-12">
+            <pre> {{ formGroup.getRawValue() | json }}</pre>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+    <div class="wrapper">
+      <button (click)="close()" id="cancel_btn" type="button"
+        class="btn btn-custom btn-dark small-btn col-sm-4 mr-2">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
